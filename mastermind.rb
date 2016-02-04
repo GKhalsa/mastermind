@@ -7,7 +7,6 @@ class Mastermind
   attr_reader :game
 
   def initialize
-    # @game = Game.new
     intro
   end
 
@@ -15,7 +14,6 @@ class Mastermind
     puts "Welcome to MASTERMIND
 
     Would you like to (p)lay, read the (i)nstructions, or (q)uit?"
-    #would you like to play beginner medium or hard?
     engine
   end
 

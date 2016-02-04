@@ -43,4 +43,11 @@ module Responses
     end
   end
 
+  def self.is_i?(guess)
+    x = guess.chars.any? do |d|
+     !(d =~ /[[:alpha:]]/)
+    end
+    puts 'no numbers or special characters' if x
+  end
+
 end
