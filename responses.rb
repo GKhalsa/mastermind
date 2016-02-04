@@ -1,3 +1,5 @@
+require 'colorize'
+
 module Responses
 
   def self.game
@@ -5,7 +7,7 @@ module Responses
   end
 
   def self.non_valid_entry
-    puts "That is not a correct response, please try again"
+    puts "That is not a correct response, please try again".red
   end
 
   def self.i_response
@@ -14,6 +16,10 @@ module Responses
 
   def self.name
     @name
+  end
+
+  def self.time
+    @start
   end
 
   def self.keygen
@@ -27,11 +33,16 @@ module Responses
   def self.gameplay
     puts "what is your name?"
     @name = gets.chomp.downcase.to_s
+    @start = Time.now
     game.play
   end
 
   def self.game_instructions
-    puts "I have generated a beginner sequence with four elements made up of: (r)ed, (g)reen, (b)lue, and (y)ellow. Use (q)uit at any time to end the game.
+    r = "(r)ed".red
+    g = "(g)reen".green
+    b = "(b)lue".light_blue
+    y = "(y)ellow".yellow
+    puts "I have generated a beginner sequence with four elements made up of: #{r}, #{g}, #{b}, and #{y}. Use (q)uit at any time to end the game.
     What's your guess?"
   end
 
@@ -49,5 +60,7 @@ module Responses
     end
     puts 'no numbers or special characters' if x
   end
+
+
 
 end

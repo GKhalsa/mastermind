@@ -29,14 +29,25 @@ require 'pry'
   #     key.include?(letter)
   #   end
   # end
+  #
+  # def beiberize
+  #   array = ["taylor swift", "selena gomez", "justin beiber"]
+  #   array.each do |full_name|
+  #     first = full_name.split.first
+  #     if first.include?("selena")
+  #       p first + " <3 #{array[2].split.first} ~forever~"
+  #     end
+  #   end
+  # end
 
-  def beiberize
-    array = ["taylor swift", "selena gomez", "justin beiber"]
-    array.each do |full_name|
-      first = full_name.split.first
-      if first.include?("selena")
-        p first + " <3 #{array[2].split.first} ~forever~"
+  def guessing_engine#(guess, key)
+    guess = 'aaab'
+    key = 'aabb'
+    x = key.chars.count do |key_letter|
+      if guess.include?(key_letter)
+        guess.slice!(key_letter)
       end
     end
+    puts x
   end
-beiberize
+guessing_engine
