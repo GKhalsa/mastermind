@@ -7,7 +7,7 @@ class Mastermind
   attr_reader :game
 
   def initialize
-    @game = Game.new
+    # @game = Game.new
     intro
   end
 
@@ -15,6 +15,7 @@ class Mastermind
     puts "Welcome to MASTERMIND
 
     Would you like to (p)lay, read the (i)nstructions, or (q)uit?"
+    #would you like to play beginner medium or hard?
     engine
   end
 
@@ -23,7 +24,7 @@ class Mastermind
       loop do
         response = gets.chomp.downcase.to_s
         if response == "p" || response == "play"
-          game.play
+          Responses.gameplay
         elsif response == "i" || response == "instructions"
           Responses.i_response
         elsif response == "q" || response == "quit"

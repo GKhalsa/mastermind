@@ -3,37 +3,34 @@ require_relative 'guesser.rb'
 
 class Game
   include Responses
-  attr_reader :key
+  attr_reader   :key, :guesser
+  # attr_accessor 
 
   def initialize
-    @key = Responses.keygen
+    @key = Responses.keygen.join
     @guesser = Guesser.new
   end
 
   def play
-    puts "I have generated a beginner sequence with four elements made up of: (r)ed, (g)reen, (b)lue, and (y)ellow. Use (q)uit at any time to end the game.
-    What's your guess?"
+    Responses.game_instructions
     game_engine
   end
 
   def game_engine
     loop do
       guess = gets.to_s.downcase.chomp
-      if guess == 'key'
-        puts key.join
+      if guess == 'c' || guess == 'cheat'
+        puts key
       elsif guess == 'q'
         throw :done
       elsif guess.length == 4
-        @guesser
+        guesser.the_mind(guess, key)
+      elsif guess.length <=> 4
+        Responses.over_under(guess)
       else
         Responses.non_valid_entry
       end
     end
   end
-
-  if guess.chars.all? { |guess_letter| key.include?(guess_letter)}
-  @guesser
-  end
-
 
 end
