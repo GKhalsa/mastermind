@@ -7,18 +7,21 @@ class Game
 
   def initialize
     @key = Responses.keygen.join
-    @guesser = Guesser.new
+    @guesser ||= Guesser.new
   end
 
   def play
-    #would you like to play beginning medium or hard
+    # puts "would you like to play (e)asy (m)edium or (h)ard?"
+    # puts "would you like to play 2player?(y/n)"
+    # level = gets.to_s.downcase.chomp.delete(' ')
     Responses.game_instructions
-    game_engine
+    game_engine#(level)
   end
 
-  def game_engine#(hard, medium, or easy)
+  def game_engine#(level)#(hard, medium, or easy)
     loop do
-      guess = gets.to_s.downcase.chomp
+      guess = gets.to_s.downcase.chomp.delete(' ')
+      #mastermind_ai.guesss 
       if guess == 'c' || guess == 'cheat'
         puts key
       elsif guess == 'q' || guess == 'quit'

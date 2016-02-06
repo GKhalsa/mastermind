@@ -40,14 +40,38 @@ require 'pry'
   #   end
   # end
 
-  def guessing_engine#(guess, key)
-    guess = 'aaab'
-    key = 'aabb'
-    x = key.chars.count do |key_letter|
-      if guess.include?(key_letter)
-        guess.slice!(key_letter)
-      end
-    end
-    puts x
+  # def guessing_engine#(guess, key)
+  #   guess = 'aaab'
+  #   key = 'aaaa'
+  #   x = key.chars.count do |key_letter|
+  #     if guess.include?(key_letter)
+  #       guess.slice!(key_letter)
+  #     end
+  #   end
+  #   puts x
+  # end
+#
+# def guessing_engine(arg)
+#   @hello << arg
+#   puts hellow
+# end
+#
+# def hellow
+#   @hello = []
+# end
+
+class Testings
+  attr_accessor :color
+  def initialize
+    @color = color
   end
-guessing_engine
+
+  def what_color?
+    @color
+  end
+end
+
+
+yarp = Testings.new
+yarp.color = 'blue'
+yarp.what_color? # => "blue"

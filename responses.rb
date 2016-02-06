@@ -11,7 +11,11 @@ module Responses
   end
 
   def self.i_response
-    puts "There is a generated key, you have to guess it. Use (q)uit at any time to end the game. add more to this later!!"
+    puts "You will be presented with a series of colors. Depending on your difficulty there will be anywhere from 4-6 colors that represent 4 to 8 slots. i.e. If you choose easy there will be four colors => 'r' for red, 'g' for green, 'b' for blue, and 'y' for yellow which can then be in any order or ammount i.e rrrr or rrgg or rgby. Have fun!"
+  end
+
+  def self.guess_storage(guess)
+    guess
   end
 
   def self.name
@@ -32,7 +36,7 @@ module Responses
 
   def self.gameplay
     puts "what is your name?"
-    @name = gets.chomp.downcase.to_s
+    @name = gets.chomp.downcase.to_s.delete(' ')
     @start = Time.now
     game.play
   end
@@ -60,7 +64,5 @@ module Responses
     end
     puts 'no numbers or special characters' if x
   end
-
-
 
 end
