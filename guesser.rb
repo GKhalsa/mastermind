@@ -1,11 +1,13 @@
 require_relative 'responses.rb'
+require_relative 'game.rb'
 
 class Guesser
   include Responses
   attr_reader :name, :guess_count
-  attr_accessor :guess_storage
+  attr_accessor :guess_storage, :ai
 
-  def initialize
+  def initialize(ai)
+    @ai = ai
     @name = Responses.name
     @guess_count = 0
   end
@@ -37,15 +39,16 @@ class Guesser
     if x == 4 && y == 4
       Endgame.new.endgame_prompt(key, name, guess_count)
     else
-      Endgame.new.number_scoring(z, x, y)
+      Endgame.new.number_scoring(z, x, y, ai)
     end
   end
 
 end
 
 class Endgame
-
+  attr_reader :robot
   def initialize
+    @robot ||= AI.new
   end
 
   def endgame_prompt(key, name, guess_count)
@@ -64,8 +67,12 @@ class Endgame
     end
   end
 
-  def number_scoring(z, x, y)
-    puts "#{z} has #{x} of the correct elements, with #{y} in the correct position"
+  def number_scoring(z, x, y, ai)
+    if ai
+      robot.what_the_ai_scored
+    else
+      puts "#{z} has #{x} of the correct elements, with #{y} in the correct position"
+    end
   end
 
   def endgame(result)

@@ -1,32 +1,35 @@
+require 'pry'
 class AI
   attr_reader :temp
   def initialize
-    @temp = [["a", nil, nil, "b"]]
+    @temp = [[nil,nil,nil,nil]] #["a", nil, nil, "b"]
+    @guess_count = 0
   end
 
-  def random_guess(nums_left_to_guess = 4, key)
-    ai_guess = ""
-    nums_left_to_guess.times do
-      key << 'rgby'.chars.sample
-    end
-    ai_analyzer(ai_guess, key)
-  end
+  # def random_guess(nums_left_to_guess = 4, key)
+  #   ai_guess = ""
+  #   nums_left_to_guess.times do
+  #     key << 'rgby'.chars.sample
+  #   end
+  #   ai_analyzer(ai_guess, key)
+  # end
 
   # def ai_analyzer(ai_guess, key)
   # @temp << correct_positions(ai_guess, key)  #["a", nil, nil, "b"]
   # end
 
-  def correct_guesses(guess, key)
-    key.chars.count { |key_letter| guess.slice!(key_letter) if guess.include?(key_letter) }
-  end
+  # def correct_guesses(guess, key)
+  #   key.chars.count { |key_letter| guess.slice!(key_letter) if guess.include?(key_letter) }
+  # end
 
-  def what_is_correct_ai
+  def what_the_ai_scored
     x = temp[-1].compact.length
     "The computer has #{x} of the correct elements, with #{x} in the correct position"
   end
 
   def ai_re_guesser
-    old_guess = temp[-1]  # => ["a", nil, nil, "b"]
+    @guess_count +=1
+    old_guess = temp[-1]  # => [nil, nil, nil, nil]
     new_guess = []
     old_guess.each do |guess_ltr|
       if guess_ltr.nil?
@@ -38,19 +41,20 @@ class AI
     new_guess
   end
                          #abbb  #aaab
-  def correct_positions(ai_guess, key)
+  def correct_positions(key)
+    ai_guess = ai_re_guesser
     ai_array_with_correct= [nil,nil,nil,nil]
-    ai_guess[0].chars.each_with_index do |guess_ltr, index|
-      if ai_guess[0][index] == key[index]
+    ai_guess.each_with_index do |guess_ltr, index|
+      if ai_guess[index] == key[index]
         ai_array_with_correct.slice!(index)
         ai_array_with_correct.insert(index, guess_ltr)
       end
     end
-    @temp << ai_array_with_correct # =>
+    @temp << ai_array_with_correct # => [[nil, nil, nil, nil], [nil, nil, "b", "y"]]
   end
 
 end
-AI.new.ai_re_guesser # => ["a", "y", "g", "b"]
+AI.new.correct_positions('rgby') # => [[nil, nil, nil, nil], [nil, nil, "b", "y"]]
 
 
 #random guess is generated
