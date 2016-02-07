@@ -19,34 +19,19 @@ class AI
   end
 
   def ai_re_guesser
-    old_guess = ai_guesses[-1]
-    new_guess = []
-    old_guess.each do |guess_ltr|
-      if guess_ltr.nil?
-        new_guess << 'rgby'.chars.sample
-      else
-        new_guess << guess_ltr
-      end
-    end
+    new_guess = ai_guesses[-1].map { |guess_ltr| guess_ltr.nil? ? 'rgby'.chars.sample : guess_ltr }
+
     @guesses_to_analyze << new_guess
     new_guess
   end
-                         
+
   def ai_correct_positions(key)
     ai_guess = ai_re_guesser
     ai_array_with_correct= [nil,nil,nil,nil]
-    ai_guess.each_with_index do |guess_ltr, index|
-      if ai_guess[index] == key[index]
-        ai_array_with_correct.slice!(index)
-        ai_array_with_correct.insert(index, guess_ltr)
-      end
-    end
+    ai_guess.each_with_index { |guess_ltr, index|
+                    (ai_array_with_correct.slice!(index)
+                    ai_array_with_correct.insert(index, guess_ltr)) if ai_guess[index] == key[index] }
     @ai_guesses << ai_array_with_correct
   end
 
 end
-
-
-
-#in the key if guess.count(letter) <= key.count(letter)
-#once all four it guesses through those randomly or mayb 3 whatever makes more sense

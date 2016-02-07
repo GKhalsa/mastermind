@@ -16,7 +16,6 @@ class Guesser
 
   def the_mind(guess, key)
     @guess_count += 1
-    # GuessStorage.new.guess_collection << guess
     if guess.chars.all? { |guess_ltr| key.include?(guess_ltr)}
       guessing_engine(guess, key)
     elsif guess.chars.any? { |guess_ltr| key.include?(guess_ltr)}
@@ -29,6 +28,7 @@ class Guesser
   def ai_guessing_engine(key, name)
     robot.ai_correct_positions(key)
     if robot.ai_guesses[-1].compact.count == 4
+      puts robot.what_the_ai_scored(key)
       Endgame.new.robot_overlord(name)
     else
       puts robot.what_the_ai_scored(key)
