@@ -21,31 +21,18 @@ class Game
     game_engine
   end
 
-  # def one_player
-  #   Responses.game_instructions
-  #   game_engine#(level)
-  # end
-  #
-  # def computer_player
-  #   Responses.game_instructions
-  #   @ai = true
-  #   game_engine
-  # end
-
-  def game_engine#(level)#(hard, medium, or easy)
+  def game_engine
     loop do
       guess = gets.to_s.downcase.chomp.delete(' ')
-      #mastermind_ai.guesss
       if guess == 'c' || guess == 'cheat'
         puts key
       elsif guess == 'q' || guess == 'quit'
         throw :done
       elsif Responses.is_i?(guess)
-      elsif guess.length == 4 #(variable)
+      elsif guess.length == 4
         guesser.ai = ai
         guesser.the_mind(guess, key)
-        # binding.pry #(hard, medium, easy in arg)
-      elsif guess.length <=> 4 #variable, num or something
+      elsif guess.length <=> 4
         Responses.over_under(guess)
       end
     end
