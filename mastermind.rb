@@ -33,7 +33,6 @@ class Mastermind
       end
     end
   end
-
 end
 
 Mastermind.new

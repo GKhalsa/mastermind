@@ -1,5 +1,6 @@
 require_relative 'responses.rb'
 require_relative 'string.rb'
+require_relative 'write_to_leaderboard.rb'
 
 class Endgame
   attr_reader :robot
@@ -33,6 +34,7 @@ class Endgame
   def robot_overlord(name)
     puts "Robot Wins!!"
     puts "Silly #{name}, you think you were a match for me?! It's ok though, you were fun to play with, I will spare you during the robot uprising".red.bold
+    Writing.writer(name)
     replay_prompt
   end
 end
