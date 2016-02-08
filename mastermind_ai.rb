@@ -30,7 +30,8 @@ class AI
     ai_array_with_correct= [nil,nil,nil,nil]
     ai_guess.each_with_index { |guess_ltr, index|
                     (ai_array_with_correct.slice!(index)
-                    ai_array_with_correct.insert(index, guess_ltr)) if ai_guess[index] == key[index] }
+                    ai_array_with_correct.insert(index, guess_ltr)) if ai_guess[index] == key[index]
+                             }
     @ai_guesses << ai_array_with_correct
   end
 
