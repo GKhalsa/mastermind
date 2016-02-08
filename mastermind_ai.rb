@@ -1,3 +1,4 @@
+require_relative 'string.rb'
 require 'pry'
 class AI
   attr_reader :ai_guesses, :guesses_to_analyze
@@ -15,7 +16,7 @@ class AI
   def what_the_ai_scored(key)
     x = ai_guesses[-1].compact.length
     y = correct_elements(guesses_to_analyze, key)
-    "The computer has #{y} of the correct elements, with #{x} in the correct position"
+    "The computer has #{y} of the correct elements, with #{x} in the correct position".red.underline
   end
 
   def ai_re_guesser

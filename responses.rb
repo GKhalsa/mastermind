@@ -1,5 +1,4 @@
-require 'colorize'
-
+require_relative 'string.rb'
 module Responses
 
   def self.game
@@ -42,10 +41,10 @@ module Responses
   end
 
   def self.game_instructions
-    r = "(r)ed".red
-    g = "(g)reen".green
-    b = "(b)lue".light_blue
-    y = "(y)ellow".yellow
+    r = "(r)ed".red.bold
+    g = "(g)reen".green.bold
+    b = "(b)lue".light_blue.bold
+    y = "(y)ellow".yellow.bold
     puts "I have generated a beginner sequence with four elements made up of: #{r}, #{g}, #{b}, and #{y}. Use (q)uit at any time to end the game.
     What's your guess?"
   end

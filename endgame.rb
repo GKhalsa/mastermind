@@ -1,4 +1,5 @@
 require_relative 'responses.rb'
+require_relative 'string.rb'
 
 class Endgame
   attr_reader :robot
@@ -26,12 +27,12 @@ class Endgame
   end
 
   def number_scoring(z, x, y, ai)
-    puts "#{z} has #{x} of the correct elements, with #{y} in the correct position"
+    puts "#{z} has #{x} of the correct elements, with #{y} in the correct position".magenta
   end
 
   def robot_overlord(name)
     puts "Robot Wins!!"
-    puts "Silly #{name}, you think you were a match for me?! It's ok though, you were fun to play with, I will spare you during the robot uprising"
+    puts "Silly #{name}, you think you were a match for me?! It's ok though, you were fun to play with, I will spare you during the robot uprising".red.bold
     replay_prompt
   end
 end
